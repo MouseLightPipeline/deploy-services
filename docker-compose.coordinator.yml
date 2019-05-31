@@ -42,7 +42,7 @@ services:
       - ${PIPELINE_API_CLIENT_PORT}:6101
       - ${PIPELINE_API_CLIENT_SOCKET_IO_PORT}:6102
     volumes:
-      - log_output:/var/log/pipeline
+      - "${PIPELINE_LOG_PATH}:/var/log/pipeline"
     networks:
       - back_tier
 

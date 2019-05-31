@@ -5,7 +5,7 @@ version: '3.1'
 #
 services:
   #
-  # Core Services (standard/required for any system), can be deployed anywhere
+  # Core Services (standard/required for any system), can be deployed anywhere.
   #
   # These host names can be changed, but must the defaults in dependent systems must be overridden via environment
   # variables.
@@ -17,7 +17,7 @@ services:
       - "${PIPELINE_DATABASE_PORT}:5432"
     environment:
       PGDATA: /var/lib/postgresql/data/pgdata
-      POSTGRES_PASSWORD: "pgsecret"
+      POSTGRES_PASSWORD: "${DATABASE_PW}"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./datastore/pipeline:/docker-entrypoint-initdb.d
@@ -32,7 +32,7 @@ services:
       - "${PIPELINE_MESSAGE_API_PORT}:5672"
       - "${PIPELINE_MESSAGE_UI_PORT}:15672"
     environment:
-      RABBITMQ_ERLANG_COOKIE: "mqsecret"
+      RABBITMQ_ERLANG_COOKIE: "${MESSAGE_QUEUE_COOKIE}"
     volumes:
       - mq_data:/var/lib/rabbitmq
     networks:
@@ -56,7 +56,7 @@ services:
       - "${PIPELINE_GRAFANA_PORT}:3000"
     environment:
       GF_AUTH_ANONYMOUS_ENABLED: 1
-      GF_AUTH_ANONYMOUS_ORG_NAME: "Janelia"
+      GF_AUTH_ANONYMOUS_ORG_NAME: "${GRAFANA_ORG_NAME}"
     volumes:
       - grafana_data:/var/lib/grafana
       - grafana_config:/etc/grafana

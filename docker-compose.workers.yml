@@ -3,15 +3,23 @@ version: '3.1'
 # There are a number of required environmental variables.  For a new installation, copy and past .env-template as .env
 # and change the values as appropriate.
 #
+# This is configured for standard Janelia Mouse Light resources as an example.  It can be left unchanged if the number
+# of workers will be same, unless you want to change the container host names for aesthetic reasons.  Otherwise workers
+# can be added and removed in conjunction with env vars set in .env.
+#
 services:
+  #
+  # Front-end clients for canopus/sirius/vega workers.
+  # Not present: worker backend/api service - must be run where local paths to data are accessible
+  #
   canopus-client:
     image: mouselightpipeline/worker-client:1.4
     hostname: canopus-client
     environment:
       PIPELINE_WORKER_API_HOST: ${PIPELINE_CANOPUS_API_HOST}
-      PIPELINE_WORKER_API_PORT: ${PIPELINE_LOCAL_WORKER_API_PORT}
+      PIPELINE_WORKER_API_PORT: ${PIPELINE_WORKER_API_PORT}
     ports:
-      - ${PIPELINE_CANOPUS_LOCAL_CLIENT_PORT}:6301
+      - ${PIPELINE_CANOPUS_WORKER_CLIENT_PORT}:6301
     volumes:
       - log_output:/var/log/pipeline
     networks:
@@ -22,9 +30,9 @@ services:
     hostname: sirius-client
     environment:
       PIPELINE_WORKER_API_HOST: ${PIPELINE_SIRIUS_API_HOST}
-      PIPELINE_WORKER_API_PORT: ${PIPELINE_LOCAL_WORKER_API_PORT}
+      PIPELINE_WORKER_API_PORT: ${PIPELINE_WORKER_API_PORT}
     ports:
-      - ${PIPELINE_SIRIUS_LOCAL_CLIENT_PORT}:6301
+      - ${PIPELINE_SIRIUS_WORKER_CLIENT_PORT}:6301
     volumes:
       - log_output:/var/log/pipeline
     networks:
@@ -35,16 +43,28 @@ services:
     hostname: vega-client
     environment:
       PIPELINE_WORKER_API_HOST: ${PIPELINE_VEGA_API_HOST}
-      PIPELINE_WORKER_API_PORT: ${PIPELINE_LOCAL_WORKER_API_PORT}
+      PIPELINE_WORKER_API_PORT: ${PIPELINE_WORKER_API_PORT}
     ports:
-      - ${PIPELINE_VEGA_LOCAL_CLIENT_PORT}:6301
+      - ${PIPELINE_VEGA_WORKER_CLIENT_PORT}:6301
     volumes:
       - log_output:/var/log/pipeline
     networks:
       - back_tier
   #
-  # Not present: worker backend/api service - must be run where local paths to data are accessible
+  # Cluster-only worker run on main server.
   #
+  cluster-client:
+    image: mouselightpipeline/worker-client:1.4
+    hostname: cluster-client
+    environment:
+      PIPELINE_WORKER_API_HOST: ${PIPELINE_CLUSTER_API_HOST}
+      PIPELINE_WORKER_API_PORT: ${PIPELINE_WORKER_API_PORT}
+    ports:
+      - ${PIPELINE_CLUSTER_WORKER_CLIENT_PORT}:6301
+    volumes:
+      - log_output:/var/log/pipeline
+    networks:
+      - back_tier
 
 volumes:
   log_output:

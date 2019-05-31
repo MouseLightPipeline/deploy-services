@@ -1,7 +1,7 @@
 # Pipeline Production Docker Deployment
 
-This is a general deployment configuration for running the core services (e.g., databases), coordinator (api, scheduler,
-and client), along with specific deployments for workers on vega, sirius, and canopus (local and cluster proxy).
+This is a deployment configuration for running the core services (e.g., databases), coordinator (api, scheduler,
+and client), along with specific deployments for workers on Janelia-specific machines.
 
 The system is built from:
 * The default Compose file to launch core services
@@ -9,10 +9,14 @@ The system is built from:
 * A Compose file to add worker frontend clients (worker backend/api services must be local to the appropriate machine)
 
 There are a number of required environmental variables in each of the Compose files.  For a new installation, copy and
-paste `.env-template` as `.env` and change the values as appropriate.  The defaults in the template are configured for
-the standard vega, canopus, sirius systems.
+paste `.env-template` as `.env` and change the values as appropriate.
 
-In general it is preferable to run one of following systems for a given deployment directory and Compose project name.
+The defaults in the template are configured for the standard Janelia workers (vega, canopus, sirius systems, and a 
+cluster-only worker).  Most of these site-specific values are specified in the worker section.  The system can be
+operated without loading the worker-related services, or the values can be updated for a given site/worker 
+configuration.
+
+In general it is preferable to run one of following system modes for a given deployment directory and Compose project name.
 It is possible to change back and forth between the different deployment modes, however you must maintain the project
 name and associated between the scripts for each mode.
 
