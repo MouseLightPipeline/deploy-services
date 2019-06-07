@@ -8,12 +8,12 @@ services:
   # Coordinator/scheduler - required, can be deployed anywhere
   #
   pipeline-api:
-    image: mouselightpipeline/pipeline-api:1.4
+    image: mouselightpipeline/pipeline-api:1.5
     hostname: pipeline-api
     ports:
       - ${PIPELINE_API_PORT}:6001
     volumes:
-      - log_output:/var/log/pipeline
+      - "${PIPELINE_LOG_PATH}:/var/log/pipeline"
       - "${EXTERNAL_DATA_VOLUME_1}:${CONTAINER_DATA_VOLUME_1}"
       - "${EXTERNAL_DATA_VOLUME_2}:${CONTAINER_DATA_VOLUME_2}"
     networks:
@@ -25,7 +25,7 @@ services:
     ports:
       - ${PIPELINE_SCHEDULER_PORT}:6002
     volumes:
-      - log_output:/var/log/pipeline
+      - "${PIPELINE_LOG_PATH}:/var/log/pipeline"
       - "${EXTERNAL_DATA_VOLUME_1}:${CONTAINER_DATA_VOLUME_1}"
       - "${EXTERNAL_DATA_VOLUME_2}:${CONTAINER_DATA_VOLUME_2}"
     networks:
@@ -40,7 +40,6 @@ services:
        PIPELINE_IS_ACTIVE: ${PIPELINE_IS_ACTIVE}
     ports:
       - ${PIPELINE_API_CLIENT_PORT}:6101
-      - ${PIPELINE_API_CLIENT_SOCKET_IO_PORT}:6102
     volumes:
       - "${PIPELINE_LOG_PATH}:/var/log/pipeline"
     networks:
