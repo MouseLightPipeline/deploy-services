@@ -32,7 +32,7 @@ services:
       - back_tier
 
   pipeline-client:
-    image: mouselightpipeline/pipeline-client:1.4
+    image: mouselightpipeline/pipeline-client:1.5
     hostname: pipeline-client
     environment:
        PIPELINE_THUMBS_HOST: ${PIPELINE_THUMBS_HOST}
