@@ -10,6 +10,8 @@ services:
   pipeline-api:
     image: mouselightpipeline/pipeline-api:1.5
     hostname: pipeline-api
+    environment:
+      NODE_ENV: production
     ports:
       - ${PIPELINE_API_PORT}:6001
     volumes:
@@ -22,6 +24,8 @@ services:
   pipeline-scheduler:
     image: mouselightpipeline/scheduler:1.4
     hostname: pipeline-scheduler
+    environment:
+      NODE_ENV: production
     ports:
       - ${PIPELINE_SCHEDULER_PORT}:6002
     volumes:
@@ -35,6 +39,7 @@ services:
     image: mouselightpipeline/pipeline-client:1.5
     hostname: pipeline-client
     environment:
+       NODE_ENV: production
        PIPELINE_THUMBS_HOST: ${PIPELINE_THUMBS_HOST}
        PIPELINE_THUMBS_PORT: ${PIPELINE_THUMBS_PORT}
        PIPELINE_IS_ACTIVE: ${PIPELINE_IS_ACTIVE}
