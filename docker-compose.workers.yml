@@ -9,58 +9,59 @@ version: '3.1'
 #
 services:
   #
-  # Front-end clients for canopus/sirius/vega workers.
   # Not present: worker backend/api service - must be run where local paths to data are accessible
   #
-  canopus-client:
+  worker1-client:
     image: mouselightpipeline/worker-client:1.4
     hostname: canopus-client
     environment:
-      PIPELINE_WORKER_API_HOST: ${PIPELINE_CANOPUS_API_HOST}
+      PIPELINE_WORKER_API_HOST: ${PIPELINE_WORKER1_HOST}
       PIPELINE_WORKER_API_PORT: ${PIPELINE_WORKER_API_PORT}
+      NODE_ENV: production
     ports:
-      - ${PIPELINE_CANOPUS_WORKER_CLIENT_PORT}:6301
+      - ${PIPELINE_WORKER1_CLIENT_PORT}:6301
     volumes:
       - log_output:/var/log/pipeline
     networks:
       - back_tier
 
-  sirius-client:
+  worker2-client:
     image: mouselightpipeline/worker-client:1.4
     hostname: sirius-client
     environment:
-      PIPELINE_WORKER_API_HOST: ${PIPELINE_SIRIUS_API_HOST}
+      PIPELINE_WORKER_API_HOST: ${PIPELINE_WORKER2_HOST}
       PIPELINE_WORKER_API_PORT: ${PIPELINE_WORKER_API_PORT}
+      NODE_ENV: production
     ports:
-      - ${PIPELINE_SIRIUS_WORKER_CLIENT_PORT}:6301
+      - ${PIPELINE_WORKER2_CLIENT_PORT}:6301
     volumes:
       - log_output:/var/log/pipeline
     networks:
       - back_tier
 
-  vega-client:
+  worker3-client:
     image: mouselightpipeline/worker-client:1.4
     hostname: vega-client
     environment:
-      PIPELINE_WORKER_API_HOST: ${PIPELINE_VEGA_API_HOST}
+      PIPELINE_WORKER_API_HOST: ${PIPELINE_WORKER3_HOST}
       PIPELINE_WORKER_API_PORT: ${PIPELINE_WORKER_API_PORT}
+      NODE_ENV: production
     ports:
-      - ${PIPELINE_VEGA_WORKER_CLIENT_PORT}:6301
+      - ${PIPELINE_WORKER3_CLIENT_PORT}:6301
     volumes:
       - log_output:/var/log/pipeline
     networks:
       - back_tier
-  #
-  # Cluster-only worker run on main server.
-  #
-  cluster-client:
+
+  worker4-client:
     image: mouselightpipeline/worker-client:1.4
     hostname: cluster-client
     environment:
-      PIPELINE_WORKER_API_HOST: ${PIPELINE_CLUSTER_API_HOST}
+      PIPELINE_WORKER_API_HOST: ${PIPELINE_WORKER4_HOST}
       PIPELINE_WORKER_API_PORT: ${PIPELINE_WORKER_API_PORT}
+      NODE_ENV: production
     ports:
-      - ${PIPELINE_CLUSTER_WORKER_CLIENT_PORT}:6301
+      - ${PIPELINE_WORKER4_CLIENT_PORT}:6301
     volumes:
       - log_output:/var/log/pipeline
     networks:
