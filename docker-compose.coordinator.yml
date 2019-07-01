@@ -12,6 +12,7 @@ services:
     hostname: pipeline-api
     environment:
       NODE_ENV: production
+      PIPELINE_DATABASE_PASS: "${DATABASE_PW}"
     ports:
       - ${PIPELINE_API_PORT}:6001
     volumes:
@@ -26,6 +27,7 @@ services:
     hostname: pipeline-scheduler
     environment:
       NODE_ENV: production
+      PIPELINE_DATABASE_PASS: "${DATABASE_PW}"
     ports:
       - ${PIPELINE_SCHEDULER_PORT}:6002
     volumes:
