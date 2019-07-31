@@ -1,3 +1,5 @@
+* Please note that this the top-level repository for deployment of the pipeline services in a self-contained system.  There are a number of associated repositories for the individual service code.
+
 # MouseLight Acquisition Pipeline
 
 The Mouse Light Pipeline is a collection of services that facilitate the multi-step data processing of the several-thousand tiles per acquisition sample.  The processing may occur in real-time as the data becomes available, offline after acquisition is complete, or a combination of both.  Although originally designed to utilize metadata specific to the Mouse Light acquisition process, it has since been generalized to allow processing of additional input sources.
