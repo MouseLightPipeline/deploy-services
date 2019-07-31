@@ -1,4 +1,4 @@
-* Please note that this the top-level repository for deployment of the pipeline services in a self-contained system.  There are a number of associated repositories for the individual service code.
+*Please note that this the top-level repository for deployment of the pipeline services in a self-contained system.  There are a number of associated repositories for the individual service code.*
 
 # MouseLight Acquisition Pipeline
 
