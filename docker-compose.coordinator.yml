@@ -23,7 +23,7 @@ services:
       - back_tier
 
   pipeline-scheduler:
-    image: mouselightpipeline/scheduler:1.4
+    image: mouselightpipeline/scheduler:1.5
     hostname: pipeline-scheduler
     environment:
       NODE_ENV: production
