@@ -21,7 +21,7 @@ services:
     ports:
       - ${PIPELINE_WORKER1_CLIENT_PORT}:6301
     volumes:
-      - log_output:/var/log/pipeline
+      - "${PIPELINE_LOG_PATH}:/var/log/pipeline"
     networks:
       - back_tier
 
@@ -35,7 +35,7 @@ services:
     ports:
       - ${PIPELINE_WORKER2_CLIENT_PORT}:6301
     volumes:
-      - log_output:/var/log/pipeline
+      - "${PIPELINE_LOG_PATH}:/var/log/pipeline"
     networks:
       - back_tier
 
@@ -49,7 +49,7 @@ services:
     ports:
       - ${PIPELINE_WORKER3_CLIENT_PORT}:6301
     volumes:
-      - log_output:/var/log/pipeline
+      - "${PIPELINE_LOG_PATH}:/var/log/pipeline"
     networks:
       - back_tier
 
@@ -63,7 +63,7 @@ services:
     ports:
       - ${PIPELINE_WORKER4_CLIENT_PORT}:6301
     volumes:
-      - log_output:/var/log/pipeline
+      - "${PIPELINE_LOG_PATH}:/var/log/pipeline"
     networks:
       - back_tier
 

@@ -60,29 +60,19 @@ or your override in `options.sh`.
 
 ## Misc Notes
 
-Temporary container to view output logs:
-
-`./pipeline-logs.sh`
-
 Connect to the container database instance from the command line for direct interaction use (change network name
 as appropriate):
 
 `docker run -it --rm --link pipeline_db:postgres --network pipeline_back_tier postgres:9 psql -h postgres -U postgres`
 
-
-Connect to an API instance just for migration:
-
-`docker run -it --rm --network pipeline_back_tier mouselightpipeline/pipeline-api /bin/bash`
-
-If the migration was not automatically run
+The database is automatically migrated to the the latest when the system is started, however if you would like to tinker
+and manually migrate:
 
 `./migrate.sh`
 
-If seed is needed (only on a full system refresh) from within the container (change path to task repository location
-as appropriate)
-
-`export PIPELINE_TASK_ROOT=/groups/mousebrainmicro/mousebrainmicro/pipeline-systems/pipeline`
-
-and
+If seed is needed (only on a full system refresh and if you want the default Mouse Light project examples)
 
 `./seed.sh`
+
+The various `PIPELINE_SEED_...` variables in the `.env` file likely need to to be changed unless running on
+Mouse Light project systems.

@@ -17,7 +17,7 @@ services:
       - "${PIPELINE_DATABASE_PORT}:5432"
     environment:
       PGDATA: /var/lib/postgresql/data/pgdata
-      POSTGRES_PASSWORD: "${DATABASE_PW}"
+      POSTGRES_PASSWORD: "${PIPELINE_DATABASE_PASS}"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./datastore/pipeline:/docker-entrypoint-initdb.d
