@@ -42,6 +42,7 @@ services:
     hostname: pipeline-client
     environment:
        NODE_ENV: production
+       PIPELINE_AUTH_PASS: ${PIPELINE_AUTH_PASS}
        PIPELINE_THUMBS_HOST: ${PIPELINE_THUMBS_HOST}
        PIPELINE_THUMBS_PORT: ${PIPELINE_THUMBS_PORT}
        PIPELINE_IS_ACTIVE: ${PIPELINE_IS_ACTIVE}
