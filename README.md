@@ -1,4 +1,8 @@
-*Please note that this the top-level repository for deployment of the pipeline services in a self-contained system.  There are a number of associated repositories for the individual service code.*
+**NOTE**
+
+*Documentation is being transitioned to and enhanced at https://mouselightpipeline.github.io.  Please use the information there in conjuction with this repository in the interim.*
+
+*This the just top-level repository for deployment of the pipeline services in a self-contained system.  There are a number of associated repositories for the individual service code.*
 
 # MouseLight Acquisition Pipeline
 
