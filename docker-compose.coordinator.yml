@@ -8,7 +8,7 @@ services:
   # Coordinator/scheduler - required, can be deployed anywhere
   #
   pipeline-api:
-    image: mouselightpipeline/pipeline-api:1.5
+    image: mouselightpipeline/pipeline-api:1.6
     hostname: pipeline-api
     environment:
       NODE_ENV: production
@@ -23,7 +23,7 @@ services:
       - back_tier
 
   pipeline-scheduler:
-    image: mouselightpipeline/scheduler:1.5
+    image: mouselightpipeline/scheduler:1.6
     hostname: pipeline-scheduler
     environment:
       NODE_ENV: production
@@ -38,7 +38,7 @@ services:
       - back_tier
 
   pipeline-client:
-    image: mouselightpipeline/pipeline-client:1.5
+    image: mouselightpipeline/pipeline-client:1.6
     hostname: pipeline-client
     environment:
       NODE_ENV: production
